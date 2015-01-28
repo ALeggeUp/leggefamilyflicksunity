@@ -10,7 +10,7 @@ What is it?
 Screenshots
 -----------
 
-![Screenshot](screenshot01.png "Screenshot")
+
 
 
 Contributors
