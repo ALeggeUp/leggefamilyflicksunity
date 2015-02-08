@@ -49,6 +49,7 @@ namespace aleggeup.leggefamilyflicks.main
                 injectionBinder.Bind<RegisterNewUser> ().ToSingleton ();
 
                 mediationBinder.BindView<UserMenuView> ().ToMediator<UserMenuMediator> ();
+                mediationBinder.BindView<MainMenuView> ().ToMediator<MainMenuMediator> ();
             }
 
             // Eager
