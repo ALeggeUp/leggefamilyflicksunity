@@ -38,7 +38,7 @@ namespace aleggeup.leggefamilyflicks.main
 
         [Construct]
         public FlickrNetService (IApplicationConfig config, IPersistentData persistentData,
-            RegisterNewUser registerNewUser)
+                                 RegisterNewUser registerNewUser)
         {
             Debug.Log ("FlickrNetService constructor");
             this.config = config;
@@ -60,64 +60,33 @@ namespace aleggeup.leggefamilyflicks.main
         public void RegisterNewUser ()
         {
             Debug.Log ("FlickrNetService RegisterNewUser");
-            // flickr.OAuthGetRequestTokenAsync ("oob", new System.Action<FlickrResult<OAuthRequestToken>> (OAuthGetRequestTokenCallback));
-            flickr.OAuthGetRequestTokenAsync ("oob", r => {
-                OAuthRequestToken requestToken = new OAuthRequestToken ();
-                if (r.HasError) {
-                    Debug.LogError ("async Error");
-
-                    return;
-                } else {
-                    requestToken.Token = r.Result.Token;
-                    requestToken.TokenSecret = r.Result.TokenSecret;
-
-                    RequestToken prt = new RequestToken () {
-                        BinaryTime = 0L,
-                        completed = false,
-                        Token = requestToken.Token,
-                        TokenSecret = requestToken.TokenSecret
-                    };
-
-                    persistentData.AddRequestToken (prt);
-
-                    return;
-                }
-            });
+            flickr.OAuthGetRequestTokenAsync ("oob", OAuthGetRequestTokenCallback);
             // Application.OpenURL (authUrl);
         }
 
-        private void OAuthGetRequestTokenCallback (FlickrResult<OAuthRequestToken> request)
+        public void OAuthGetRequestTokenCallback (FlickrResult<OAuthRequestToken> request)
         {
             Debug.Log ("OAuthGetRequestTokenCallback!");
+            // string authUrl = flickr.OAuthCalculateAuthorizationUrl (accessRequestToken.Token, AuthLevel.Delete, true);
             if (request.HasError) {
-                Debug.LogError ("Request had error!");
-                Debug.LogError (request.ErrorCode);
-                Debug.LogError (request.ErrorMessage);
+                Debug.LogError ("async Error");
+
+                return;
             } else {
-                Debug.Log ("Request didn't has error!!");
-                OAuthRequestToken accessRequestToken = request.Result;
-                Debug.Log ("Token: " + accessRequestToken.Token);
-                Debug.Log ("Secret: " + accessRequestToken.TokenSecret);
-                string authUrl = flickr.OAuthCalculateAuthorizationUrl (accessRequestToken.Token, AuthLevel.Delete, true);
-                Debug.Log ("auth url: " + authUrl);
-                /*
-                token = new RequestToken () {
+                RequestToken requestToken = new RequestToken () {
                     BinaryTime = 0L,
                     completed = false,
-                    ID = 1L,
-                    Token = accessRequestToken.Token,
-                    TokenSecret = accessRequestToken.TokenSecret
+                    Token = request.Result.Token,
+                    TokenSecret = request.Result.TokenSecret
                 };
-                */
-                // RequestToken token = new RequestToken ();
-                // addNewRequestTokenSignal.Dispatch (token);
-                // persistentData.AddRequestToken (token);
-                // isThisSafer (token);
+
+                persistentData.AddRequestToken (requestToken);
+
+                return;
             }
         }
 
-        public bool AcceptAllCertifications (object sender, X509Certificate certification,
-            X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        public bool AcceptAllCertifications (object sender, X509Certificate certification, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             return true;
         }
