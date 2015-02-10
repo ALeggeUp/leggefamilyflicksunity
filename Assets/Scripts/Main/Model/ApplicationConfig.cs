@@ -29,9 +29,6 @@ namespace aleggeup.leggefamilyflicks.main
         public string FlickrApplicationKey { get; private set; }
         public string FlickrApplicationSecret { get; private set; }
 
-        //PostConstruct methods fire automatically after Construction
-        //and after all injections are satisfied. It's a safe place
-        //to do things you'd usually sonsider doing in the Constructor.
         [PostConstruct]
         public void PostConstruct ()
         {

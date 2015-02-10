@@ -39,9 +39,6 @@ namespace aleggeup.leggefamilyflicks.main
             this.addNewRequestTokenSignal = addNewRequestTokenSignal;
         }
 
-        // PostConstruct methods fire automatically after Construction
-        // and after all injections are satisfied. It's a safe place
-        // to do things you'd usually consider doing in the Constructor.
         [PostConstruct]
         public void PostConstruct ()
         {
