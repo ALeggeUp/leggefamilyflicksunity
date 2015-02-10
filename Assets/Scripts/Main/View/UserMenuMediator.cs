@@ -33,20 +33,46 @@ namespace aleggeup.leggefamilyflicks.main
         public UserMenuView userMenuView { get; set; }
 
         [Inject]
-        public DisplayFirstWindow DisplayFirstWindowSignal { get; set; }
+        public UserListSignal userListSignal { get; set; }
+
+        [Inject]
+        public RequestTokenListSignal requestTokenListSignal { get; set; }
+
+        [Inject]
+        public DisplayFirstWindowSignal displayFirstWindowSignal { get; set; }
+
+        [Inject]
+        public RegisterNewUser RegisterNewUserSignal { get; set; }
 
         public override void OnRegister ()
         {
-            DisplayFirstWindowSignal.AddListener (Display);
+            Debug.Log ("UserMenuMediator - OnRegister");
+            userListSignal.AddListener(OnRefreshUserList);
+            requestTokenListSignal.AddListener(OnRefreshRequestTokenList);
+            displayFirstWindowSignal.AddListener (Display);
+            userMenuView.registerNewUserSignal.AddListener (Register);
         }
 
         public override void OnRemove ()
         {
-            DisplayFirstWindowSignal.RemoveListener (Display);
+            displayFirstWindowSignal.RemoveListener (Display);
         }
 
         public void Display() {
             userMenuView.DisplayWindow ();
+        }
+
+        public void Register() {
+            RegisterNewUserSignal.Dispatch ();
+        }
+
+        public void OnRefreshUserList(List<IUserModel> users) {
+            Debug.Log("OnRefreshUserList " + users.Count);
+        }
+
+        public void OnRefreshRequestTokenList(List<IRequestToken> requestTokens) {
+            Debug.Log("OnRefreshRequestTokenList " + requestTokens.Count);
+            userMenuView.RefreshRequestTokenItems(requestTokens);
         }
     }
 }

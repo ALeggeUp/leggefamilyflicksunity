@@ -23,11 +23,17 @@ using UnityEngine;
 using strange.extensions.signal.impl;
 using strange.extensions.mediation.impl;
 
+using System.Collections.Generic;
+
 namespace aleggeup.leggefamilyflicks.main
 {
     public class UserMenuView : View
     {
-        private static string ANIMATION_OPEN_STATE = "Open";
+        public RectTransform listContainer;
+
+        public RegistrationItemView registrationListItem;
+
+        private const string ANIMATION_OPEN_STATE = "Open";
 
         internal Signal registerNewUserSignal = new Signal ();
 
@@ -37,6 +43,24 @@ namespace aleggeup.leggefamilyflicks.main
         public void PostConstruct ()
         {
             animator = transform.GetComponent<Animator> ();
+        }
+
+        public void RefreshRequestTokenItems(List<IRequestToken> requestTokens) {
+            List<RectTransform> myChildren = new List<RectTransform>();
+            listContainer.gameObject.GetComponentsInChildren<RectTransform>(true, myChildren);
+            Debug.Log("My children: " + myChildren.Count);
+            foreach(RectTransform t in myChildren) {
+                if (t != listContainer) {
+                    DestroyImmediate(t.gameObject, true);
+                }
+            }
+
+            foreach(IRequestToken requestToken in requestTokens) {
+
+                RegistrationItemView view = Instantiate(registrationListItem) as RegistrationItemView;
+                view.transform.SetParent(listContainer, false);
+                view.RequestToken = requestToken;
+            }
         }
 
         public string MyName ()

@@ -42,15 +42,17 @@ namespace aleggeup.leggefamilyflicks.main
                 injectionBinder.Bind<IPersistentData> ().To<PersistentData> ().ToSingleton ();
                 injectionBinder.Bind<IFlickrNetService> ().To<FlickrNetService> ().ToSingleton ();
 
-                injectionBinder.Bind<DisplayFirstWindow> ().ToSingleton ();
+                injectionBinder.Bind<UserListSignal>().ToSingleton();
+                injectionBinder.Bind<RequestTokenListSignal>().ToSingleton();
+                injectionBinder.Bind<DisplayFirstWindowSignal> ().ToSingleton ();
                 injectionBinder.Bind<AddNewRequestTokenSignal> ().ToSingleton ();
-                injectionBinder.Bind<RequestTokenListSignal> ().ToSingleton ();
-                injectionBinder.Bind<NoUserSignal> ().ToSingleton ();
                 injectionBinder.Bind<RegisterNewUser> ().ToSingleton ();
 
                 mediationBinder.BindView<UserMenuView> ().ToMediator<UserMenuMediator> ();
                 mediationBinder.BindView<MainMenuView> ().ToMediator<MainMenuMediator> ();
                 mediationBinder.BindView<RegistrationItemView>().ToMediator<RegistrationItemMediator>();
+
+                commandBinder.Bind<RefreshUserMenuDataSignal>().To<RefreshUserMenuDataCommand>();
             }
 
             // Eager

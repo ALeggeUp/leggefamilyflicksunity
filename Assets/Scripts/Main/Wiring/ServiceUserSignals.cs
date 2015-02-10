@@ -25,15 +25,15 @@ using System.Collections.Generic;
 
 namespace aleggeup.leggefamilyflicks.main
 {
-    public class DisplayFirstWindow : Signal {}
+    public class DisplayFirstWindowSignal : Signal {}
+
+    public class RefreshUserMenuDataSignal : Signal {}
 
     public class UserListSignal : Signal<List<IUserModel>> {}
 
     public class RequestTokenListSignal : Signal<List<IRequestToken>> {}
 
     public class AddNewRequestTokenSignal : Signal<IRequestToken> {}
-
-    public class NoUserSignal : Signal {}
 
     public class RegisterNewUser : Signal {}
 }
