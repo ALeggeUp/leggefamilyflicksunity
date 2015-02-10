@@ -31,21 +31,12 @@ namespace aleggeup.leggefamilyflicks.main
         [Inject]
         public MainMenuView view{ get; set; }
 
-        [Inject]
-        public NoUserSignal noUserSignal{ get; set;}
-
         public override void OnRegister ()
         {
-            noUserSignal.AddListener (test);
         }
 
         public override void OnRemove ()
         {
-            noUserSignal.RemoveListener (test);
-        }
-
-        public void test() {
-            // view.Toggler ();
         }
     }
 }
