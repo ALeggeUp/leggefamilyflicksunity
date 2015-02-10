@@ -50,6 +50,7 @@ namespace aleggeup.leggefamilyflicks.main
 
                 mediationBinder.BindView<UserMenuView> ().ToMediator<UserMenuMediator> ();
                 mediationBinder.BindView<MainMenuView> ().ToMediator<MainMenuMediator> ();
+                mediationBinder.BindView<RegistrationItemView>().ToMediator<RegistrationItemMediator>();
             }
 
             // Eager
