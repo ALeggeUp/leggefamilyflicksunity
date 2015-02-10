@@ -27,17 +27,18 @@ namespace aleggeup.leggefamilyflicks.main
         private static string APP_CONFIG = "JSON/AppConfig";
 
         public string FlickrApplicationKey { get; private set; }
+
         public string FlickrApplicationSecret { get; private set; }
 
         [PostConstruct]
-        public void PostConstruct ()
+        public void PostConstruct()
         {
-            TextAsset file = Resources.Load (APP_CONFIG) as TextAsset;
+            TextAsset file = Resources.Load(APP_CONFIG) as TextAsset;
 
-            var node = SimpleJSON.JSON.Parse (file.text);
+            var node = SimpleJSON.JSON.Parse(file.text);
 
-            FlickrApplicationKey = node ["FlickrApplicationKey"];
-            FlickrApplicationSecret = node ["FlickrApplicationSecret"];
+            FlickrApplicationKey = node["FlickrApplicationKey"];
+            FlickrApplicationSecret = node["FlickrApplicationSecret"];
         }
     }
 }

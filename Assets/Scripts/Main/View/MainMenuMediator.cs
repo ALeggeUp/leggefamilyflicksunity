@@ -31,11 +31,11 @@ namespace aleggeup.leggefamilyflicks.main
         [Inject]
         public MainMenuView view{ get; set; }
 
-        public override void OnRegister ()
+        public override void OnRegister()
         {
         }
 
-        public override void OnRemove ()
+        public override void OnRemove()
         {
         }
     }

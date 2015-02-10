@@ -27,16 +27,16 @@ namespace aleggeup.leggefamilyflicks.main
     public class MainBootstrap : ContextView
     {
         // Initialize the Context
-        void Awake ()
+        void Awake()
         {
-            Debug.Log ("Initializing Main Context");
-            context = new MainContext (this);
+            Debug.Log("Initializing Main Context");
+            context = new MainContext(this);
         }
 
-        void Update ()
+        void Update()
         {
-            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift)) && Input.GetKeyDown (KeyCode.BackQuote)) {
-                Debug.Log ("Tilde");
+            if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift)) && Input.GetKeyDown(KeyCode.BackQuote)) {
+                Debug.Log("Tilde");
             }
         }
     }

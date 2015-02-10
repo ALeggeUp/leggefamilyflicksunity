@@ -44,7 +44,8 @@ namespace aleggeup.leggefamilyflicks.main
 
         public IRequestToken RequestToken { get; set; }
 
-        public void Init() {
+        public void Init()
+        {
             registrationHeaderText.text = RequestToken.Token;
         }
 

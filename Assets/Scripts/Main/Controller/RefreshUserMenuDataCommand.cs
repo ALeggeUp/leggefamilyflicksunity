@@ -32,7 +32,11 @@ namespace aleggeup.leggefamilyflicks.main
         private RequestTokenListSignal requestTokenListSignal;
 
         [Construct]
-        public RefreshUserMenuDataCommand(IPersistentData persistentData, UserListSignal userListSignal, RequestTokenListSignal requestTokenListSignal) {
+        public RefreshUserMenuDataCommand(
+            IPersistentData persistentData,
+            UserListSignal userListSignal,
+            RequestTokenListSignal requestTokenListSignal)
+        {
             this.persistentData = persistentData;
             this.userListSignal = userListSignal;
             this.requestTokenListSignal = requestTokenListSignal;

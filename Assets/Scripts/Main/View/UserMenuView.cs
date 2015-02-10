@@ -35,27 +35,28 @@ namespace aleggeup.leggefamilyflicks.main
 
         private const string ANIMATION_OPEN_STATE = "Open";
 
-        internal Signal registerNewUserSignal = new Signal ();
+        internal Signal registerNewUserSignal = new Signal();
 
         private Animator animator;
 
         [PostConstruct]
-        public void PostConstruct ()
+        public void PostConstruct()
         {
-            animator = transform.GetComponent<Animator> ();
+            animator = transform.GetComponent<Animator>();
         }
 
-        public void RefreshRequestTokenItems(List<IRequestToken> requestTokens) {
+        public void RefreshRequestTokenItems(List<IRequestToken> requestTokens)
+        {
             List<RectTransform> myChildren = new List<RectTransform>();
             listContainer.gameObject.GetComponentsInChildren<RectTransform>(true, myChildren);
             Debug.Log("My children: " + myChildren.Count);
-            foreach(RectTransform t in myChildren) {
+            foreach (RectTransform t in myChildren) {
                 if (t != listContainer) {
                     DestroyImmediate(t.gameObject, true);
                 }
             }
 
-            foreach(IRequestToken requestToken in requestTokens) {
+            foreach (IRequestToken requestToken in requestTokens) {
 
                 RegistrationItemView view = Instantiate(registrationListItem) as RegistrationItemView;
                 view.transform.SetParent(listContainer, false);
@@ -63,34 +64,34 @@ namespace aleggeup.leggefamilyflicks.main
             }
         }
 
-        public string MyName ()
+        public string MyName()
         {
             return transform.name;
         }
 
-        public void DisplayWindow ()
+        public void DisplayWindow()
         {
-            SetWindowState (true);
+            SetWindowState(true);
         }
 
-        public void HideWindow ()
+        public void HideWindow()
         {
-            SetWindowState (false);
+            SetWindowState(false);
         }
 
-        public void ToggleDisplay ()
+        public void ToggleDisplay()
         {
-            SetWindowState (!animator.GetBool (ANIMATION_OPEN_STATE));
+            SetWindowState(!animator.GetBool(ANIMATION_OPEN_STATE));
         }
 
-        public void SetWindowState (bool state)
+        public void SetWindowState(bool state)
         {
-            animator.SetBool (ANIMATION_OPEN_STATE, state);
+            animator.SetBool(ANIMATION_OPEN_STATE, state);
         }
 
-        public void registerTrigger ()
+        public void registerTrigger()
         {
-            registerNewUserSignal.Dispatch ();
+            registerNewUserSignal.Dispatch();
         }
     }
 }

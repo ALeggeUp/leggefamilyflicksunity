@@ -31,17 +31,19 @@ namespace aleggeup.leggefamilyflicks.main
         private DisplayFirstWindowSignal displayFirstWindowSignal;
 
         [Construct]
-        public MainStartupCommand (RefreshUserMenuDataSignal refreshUserMenuDataSignal, DisplayFirstWindowSignal displayFirstWindow) : base()
+        public MainStartupCommand(
+            RefreshUserMenuDataSignal refreshUserMenuDataSignal,
+            DisplayFirstWindowSignal displayFirstWindow) : base()
         {
             this.refreshUserMenuDataSignal = refreshUserMenuDataSignal;
             this.displayFirstWindowSignal = displayFirstWindow;
         }
 
-        override public void Execute ()
+        override public void Execute()
         {
-            Debug.Log ("MainStartupCommand.Execute()");
+            Debug.Log("MainStartupCommand.Execute()");
             refreshUserMenuDataSignal.Dispatch();
-            displayFirstWindowSignal.Dispatch ();
+            displayFirstWindowSignal.Dispatch();
         }
     }
 }

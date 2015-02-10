@@ -29,36 +29,36 @@ namespace aleggeup.leggefamilyflicks.main
 {
     public class MainContext : SignalContext
     {
-        public MainContext (MonoBehaviour contextView) : base (contextView)
+        public MainContext(MonoBehaviour contextView) : base(contextView)
         {
         }
 
-        protected override void mapBindings ()
+        protected override void mapBindings()
         {
-            base.mapBindings ();
+            base.mapBindings();
 
             if (Context.firstContext == this) {
-                injectionBinder.Bind<IApplicationConfig> ().To<ApplicationConfig> ().ToSingleton ();
-                injectionBinder.Bind<IPersistentData> ().To<PersistentData> ().ToSingleton ();
-                injectionBinder.Bind<IFlickrNetService> ().To<FlickrNetService> ().ToSingleton ();
+                injectionBinder.Bind<IApplicationConfig>().To<ApplicationConfig>().ToSingleton();
+                injectionBinder.Bind<IPersistentData>().To<PersistentData>().ToSingleton();
+                injectionBinder.Bind<IFlickrNetService>().To<FlickrNetService>().ToSingleton();
 
                 injectionBinder.Bind<UserListSignal>().ToSingleton();
                 injectionBinder.Bind<RequestTokenListSignal>().ToSingleton();
-                injectionBinder.Bind<DisplayFirstWindowSignal> ().ToSingleton ();
-                injectionBinder.Bind<AddNewRequestTokenSignal> ().ToSingleton ();
-                injectionBinder.Bind<RegisterNewUser> ().ToSingleton ();
+                injectionBinder.Bind<DisplayFirstWindowSignal>().ToSingleton();
+                injectionBinder.Bind<AddNewRequestTokenSignal>().ToSingleton();
+                injectionBinder.Bind<RegisterNewUser>().ToSingleton();
 
-                mediationBinder.BindView<UserMenuView> ().ToMediator<UserMenuMediator> ();
-                mediationBinder.BindView<MainMenuView> ().ToMediator<MainMenuMediator> ();
+                mediationBinder.BindView<UserMenuView>().ToMediator<UserMenuMediator>();
+                mediationBinder.BindView<MainMenuView>().ToMediator<MainMenuMediator>();
                 mediationBinder.BindView<RegistrationItemView>().ToMediator<RegistrationItemMediator>();
 
                 commandBinder.Bind<RefreshUserMenuDataSignal>().To<RefreshUserMenuDataCommand>();
             }
 
             // Eager
-            injectionBinder.GetInstance<IFlickrNetService> ();
+            injectionBinder.GetInstance<IFlickrNetService>();
 
-            commandBinder.Bind<ContextLaunchSignal> ().To<MainStartupCommand> ().Once ();
+            commandBinder.Bind<ContextLaunchSignal>().To<MainStartupCommand>().Once();
         }
     }
 }

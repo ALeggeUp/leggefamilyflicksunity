@@ -34,13 +34,15 @@ namespace aleggeup.leggefamilyflicks.main
     public class MainMenuView : View
     {
 
-        public string MyName() {
+        public string MyName()
+        {
             return transform.name;
         }
 
-        public void Toggler() {
-            Animator anim = transform.GetComponent<Animator> ();
-            anim.SetBool ("Open", !anim.GetBool("Open"));
+        public void Toggler()
+        {
+            Animator anim = transform.GetComponent<Animator>();
+            anim.SetBool("Open", !anim.GetBool("Open"));
         }
     }
 }

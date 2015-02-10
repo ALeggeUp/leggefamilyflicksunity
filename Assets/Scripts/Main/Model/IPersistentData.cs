@@ -34,7 +34,7 @@ namespace aleggeup.leggefamilyflicks.main
 
         List<IUserModel> Users { get; }
 
-        void AddRequestToken (IRequestToken token);
+        void AddRequestToken(IRequestToken token);
     }
 
     public interface IRequestToken

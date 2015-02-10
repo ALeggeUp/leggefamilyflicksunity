@@ -32,16 +32,17 @@ namespace aleggeup.leggefamilyflicks.main
         [Inject]
         public RegistrationItemView view { get; set; }
 
-        public void SetRequestToken(IRequestToken requestToken) {
+        public void SetRequestToken(IRequestToken requestToken)
+        {
             view.RequestToken = requestToken;
         }
 
-        public override void OnRegister ()
+        public override void OnRegister()
         {
             view.Init();
         }
 
-        public override void OnRemove ()
+        public override void OnRemove()
         {
         }
     }
