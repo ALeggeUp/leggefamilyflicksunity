@@ -2735,7 +2735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listContainer: {fileID: 1346401062}
-  registrationListItem: {fileID: 22467338, guid: 27e0de6770cec483085a3691ea0e5929,
+  registrationListItem: {fileID: 11408462, guid: 27e0de6770cec483085a3691ea0e5929,
     type: 2}
 --- !u!1 &2113237652
 GameObject:

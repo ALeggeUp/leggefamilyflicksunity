@@ -24,13 +24,13 @@ using UnityEngine.UI;
 using strange.extensions.signal.impl;
 using strange.extensions.mediation.impl;
 
+using System;
 using System.Collections;
 
 namespace aleggeup.leggefamilyflicks.main
 {
     public class RegistrationItemView : View
     {
-
         #region public editor fields
 
         [Header("Links to Text Fields")]
@@ -42,6 +42,13 @@ namespace aleggeup.leggefamilyflicks.main
 
         #endregion
 
+        #region Internal signals for mediator
+
+        internal Signal launch = new Signal();
+        internal Signal cancel = new Signal();
+
+        #endregion
+
         public IRequestToken RequestToken { get; set; }
 
         public void Init()
@@ -49,5 +56,12 @@ namespace aleggeup.leggefamilyflicks.main
             registrationHeaderText.text = RequestToken.Token;
         }
 
+        public void LaunchRequest() {
+            launch.Dispatch();
+        }
+
+        public void CancelRequest() {
+            cancel.Dispatch();
+        }
     }
 }
